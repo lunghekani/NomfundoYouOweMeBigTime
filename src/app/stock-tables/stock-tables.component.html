@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <h2>Angular Display Data from Json File Example</h2>
+  <input type="text" (input)="search($event)" />
+  <table>
+    <thead>
+      <tr>
+        <th>Stock</th>
+        <th>Date</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of selectedStockValues">
+        <td>{{ item.stock_id }}</td>
+        <td>{{ item.date }}</td>
+        <td>{{ item.value }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+    <thead>
+      <tr>
+        <!-- <th><input type="checkbox"></th> -->
+        <th>Id</th>
+        <th mat-sort-header="byName">Stock</th>
+        <th mat-sort-header="byIndustry">Industry</th>
+        <th mat-sort-header="bySector">Sector</th>
+        <th mat-sort-header="byCode">Currency Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let stock_item of stock; let index = index"
+        (click)="selectHandler(stock_item)"
+      >
+        <!-- <td><input type="checkbox"  (change)="selectHandler(stock_item)"></td> -->
+        <td>{{ stock_item.id }}</td>
+        <td>{{ stock_item.stock }}</td>
+        <td>{{ stock_item.industry }}</td>
+        <td>{{ stock_item.sector }}</td>
+        <td>{{ stock_item.currency_code }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
